@@ -1,9 +1,11 @@
+# Crypto Terminology
+
 The purpose of this document is not to rigidly define terms for some sort of 'official' use, but rather to serve as an introduction and collective reference to the way terms are commonly used. People will disagree with some of these definitions, and that disagreement is a secondary concern to guiding newcomers to several definitions and giving them the ability to discern which is meant based on context.
 
 This document is not meant to serve as an _introduction_ to cryptography in general, but rather to supplement such guided tutorials and discussions where one is finding unfamiliar terms. If one isn't starting from the very, very beginning (e.g. arithmetic) and encounters a new term - this document should help them understand the term.
 
 
-== Basics ==
+## Basics
 
 Integrity - Refers to the consistency of data, in the sense that it cannot be modified in an unauthorized or stealthy fashion.
 
@@ -73,7 +75,7 @@ Snakeoil - Slang used to refer to a cryptographic protocol or product (usually b
 MITM (Man in the Middle) - refers to a situation where an attacker can position themself such that they can alter and inject messages in a session. A common communication graph is Alice communicating with Bob (Alice <-----> Bob) - here a MITM (often dubbed "Mallory") impersonates Bob to Alice and Alice to Bob: (Alice <---> Mallory <---> Bob)
 
 
-== Math ==
+## Math
 
 Prime - a number greater than one that has no divisors other than 1 and itself. (2 is counted as prime.) Other examples: 5, 7, 11, 13 Common public key cryptography algorithms are based on large prime numbers.
 
@@ -179,7 +181,7 @@ g - widely used to denote the generator of a group
 
 
 
-== Algorithms and Algorithm Properties ==
+## Algorithms and Algorithm Properties
 
 One Time Pad - A technique in which the plaintext is paired with a secret random key (pad) using modular addition. If the key is random, as long as the plaintext, never reused, and is protected sufficiently from disclosure, then the ciphertext is impossible to decrypt. Steam ciphers are a rough approximation of a one time pad.
 
@@ -386,7 +388,7 @@ Group Signature - A system whereby a member of a defined group can anonymously s
 Identity-Based Cryptosystem - Public key cryptography in which an identifier (such as an email address) is used as a public key. IBE systems use a centralized method to generate private (and public) keys for the identifier. This centralization may be seen as a point of vulnerability or a feature depending on your vantage point.
 
 
-== Attacks ==
+## Attacks
 
 Oracle - An oracle is something that tells you something about something.  Different types of oracles specify those terms more concretely:
 
@@ -504,7 +506,7 @@ Key Logging - The use of malicious hardware or software that logs all of the vic
 
 Rubber Hose Cryptanalysis - Recovering a secret key (or contents of an encrypted message) by torturing a person with knowledge of the secret information.
 
-== The Crypto Pals ==
+## The Crypto Pals
 
 Alice - In conversational explanations of cryptographic principles, the originator of a message (the message goes from A to B).
 
@@ -516,7 +518,7 @@ Mallory - In conversational explanations of cryptographic principles, an active,
 
 Trent - In conversational explanations of cryptographic principles, a trusted third party.
 
-=== Less Commonly Used ===
+#### Less Commonly Used
 
 Carol - In conversational explanations of cryptographic principles, a third participant in the exchange.
 
@@ -529,7 +531,7 @@ Peggy - In conversational explanations of cryptographic principles, a "prover" i
 Victor - In conversational explanations of cryptographic principles, a "verifier" in zero-knowledge proofs.
 
 
-== Protocols ==
+## Protocols
 
 Challenge Response - An interactive protocol whereby a challenger sends a challenge to a user (or supplicant), who performs some action or retrieves some item of information, in order to provide a response which proves their identity.
 
@@ -626,7 +628,7 @@ WPA2 - The latest version of Wi-Fi Protected Access, a protocol used to secure m
 WPS (Wi-Fi Protected Setup) - A protocol to permit simple pushbutton configuration of secure wireless networks. 
 
 
-== Authentication Models ==
+## Authentication Models
 
 Pre-Shared Keys - Keys for an encrypted channel shared amongst all participants before establishment of the channel.
 
@@ -657,7 +659,7 @@ DNSSEC - If DNSSEC is referenced as an authentication model, it usually refers t
 DNSSEC-Stapled or 'Include a DNSSEC chain' - Place a key K in DNS (technically this is optional but if you assume they're there, it helps visualize it), and have K signed with DNSSEC. Now take the entire DNSSEC chain of signatures out of DNS, and provide them... somehow. You establish trust in K by following the chain of signatures up to the root DNSSEC key.  Chrome briefly supported authenticating SSL certificates via DNSSEC-stapling.
 
 
-== Notable Trivia ==
+## Notable Trivia
 
 Clipper - An encryption chipset promoted by the NSA in the early 1990s. The system utilized the Skipjack algorithm, and a mandatory key-escrow policy which would have granted US Federal investigators some access to decrypt clipper-encrypted traffic.
 
