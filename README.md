@@ -11,19 +11,22 @@ Integrity - Refers to the consistency of data, in the sense that it cannot be mo
 
 Confidentiality - The property that data is unreadable by unauthorized parties.
 
-Authenticity - The property that all parties involved in the communication are who they claim to be. 
+Authenticity (aka Authentication) - The property that all parties involved in the communication are who they claim to be. Sometimes used interchangably with Integrity.
 
 
 Symmetric Cipher or Secret Key Cryptography - Cryptography algorithms which use the same key for decryption and encryption. These algorithms are typically based on performing complex rearrangements and XORs of the input bytes, which could be imagined partially as shuffling a deck of cards.
 
-Asymmetric Cipher or Public Key Cryptography - Cryptography algorithms which use one key for encryption (public key) and a different, related key for decryption (private key). Unlike Symmetric algorithms, these algorithms are typically based on underlying mathematical properties that provide a 'trapdoor'. A mathematical operation that is easy to compute in one direction, but difficult to undo - unless one has a secret value that unlocks the 'trapdoor'. 
+Asymmetric Cipher or Public Key Cryptography - Cryptography algorithms which use one key for encryption (public key) and a different, related key for decryption (private key). This also encompasses digital signatures, where one (private) key can generate a signature and the corresponding public key can verify the signature.  Unlike Symmetric algorithms, these algorithms are typically based on underlying mathematical properties that provide a 'trapdoor'. A mathematical operation that is easy to compute in one direction, but difficult to undo - unless one has a secret value that unlocks the 'trapdoor'. 
 
 
 Plaintext - plain, unencrypted data
 
-Cipher - An Encryption and/or Decryption algorithm
+Cipher - An Encryption and/or Decryption algorithm.  Usually refers to a symmetric algorithm.
 
 Ciphertext - the result of plaintext encrypted by a cipher
+
+
+Digital Signature - A way to authenticate a piece of data such that only the person in posession of the private key could have generated the signature. The corresponding public key is used to validate the signature.
 
 
 Block Cipher - a cipher which operates on a fixed-size number of bytes, also known as blocks. Plaintext that is not divisible evenly by the block size must be padded before encryption.   
@@ -31,21 +34,21 @@ Block Cipher - a cipher which operates on a fixed-size number of bytes, also kno
 Block Size - The size of the data that a block cipher operates on.  A common block size is 16 bytes or 128 bits. Older block ciphers use a block size of 8 bytes/64 bits.
 
 
-Stream Cipher -  a cipher which operates by combining (XORing) plaintext with a pseudorandom stream of digits (keystream). As opposed to block ciphers, stream ciphers encrypt one plaintext bit at a time with the corresponding bit of the keystream.
+Stream Cipher -  a cipher which operates by combining (XORing) plaintext with a pseudorandom stream of bits (keystream). As opposed to block ciphers, stream ciphers encrypt one plaintext bit at a time with the corresponding bit of the keystream.
 
 
-Block Cipher Mode - As a block cipher only encrypts a fixed size block at a time, any data larger than that block size must be encrypted by multiple calls of the block cipher.  A block cipher mode is a specification for how those multiple ciphertext blocks combine, are XOR-ed together, or otherwise interact. (If at all) 
+Block Cipher Mode - As a block cipher only encrypts a fixed size block at a time, any data larger than that block size must be encrypted by multiple calls of the block cipher.  A block cipher mode is a specification for how those multiple ciphertext blocks combine, are XOR-ed together, or otherwise interact. (If at all.) Sometimes refered to as an 'Encryption Algorithm.'
 
 
 Hash Function - an algorithm that (commonly) accepts a variable-length input and produces a fixed-length output, such that the output is randomly distributed from the input.  A Cryptographic Hash Function performs the same operation, but (at a minimum) also makes it difficult to find two inputs that produce the same output. See also Preimage Attacks.
 
-MAC (Message Authentication Code) - A technique to provide integrity of a message. A MAC creates a small tag from an input to be authenticated (e.g. "Meet me at the park at 12PM") and a secret key known only to the sender and receiver. A recipient can recalculate the MAC over the input, compared with the transmitted MAC, and be assured the message has not been modified by anyone who does not known the secret key.  Not that MAC is a generic term, and while HMAC (Hashed Message Authentication Code) is the most common, other types of MACs (UMAC, CMAC, etc) exist.
+MAC (Message Authentication Code) - A technique to provide integrity of a message, or used as a symmetric-key analogue of a digital signature. A MAC creates a small tag from an input to be authenticated (e.g. "Meet me at the park at 12PM") and a secret key known only to the sender and receiver. A recipient can recalculate the MAC over the input, compared with the transmitted MAC, and be assured the message has not been modified by anyone who does not known the secret key.  Not that MAC is a generic term, and while HMAC (Hashed Message Authentication Code) is the most common, other types of MACs (UMAC, CMAC, etc) exist.
 
 
 Signature - A technique for verifying the authenticity and integrity of a message. A sender computes a signature over a message, and a recipient is able to verify the signature, asserting that the message came from the sender and was not modified.
 
 
-Key Exchange (sometimes abbreviated 'kex') - A method by which cryptographic keys are either exchanged, or agreed upon, in order to allow the use of a further encrypted communication.
+Key Exchange (sometimes abbreviated 'kex' or 'AKE') - A method by which cryptographic keys are either exchanged, or agreed upon, in order to allow the use of a further encrypted communication.
 
 
 0RTT, 1RTT, 2RTT - Relates to a protocol's round-trip time, or the number of round trips necessary for two parties to begin communicating. 0-RTT means the client can send data in the very first message to the server, and the server can immediately send data after processing the client's first message. 0-RTT makes it very difficult to implement protections such as forward secrecy and replay protection in 0-RTT. 
@@ -53,14 +56,14 @@ Key Exchange (sometimes abbreviated 'kex') - A method by which cryptographic key
 1-RTT  means the client sends a 'Hello' packet, the server replies, and the Client is able to send data.  1-RTT and above mean more message exchanges are necessary before parties can communicate securely. Fewer round-trips are desired for better performance. TLS 1.2 and below are 2-RTT, although a Session Resumption is 1-RTT.  TLS False Start was a modification to TLS behavior to achieve 1-RTT even on an initial connection. 
 
 
-Entropy - A difficult term to define, usually meaning randomness. An Operating System collects 'entropy' to be able to securely generate cryptographic keys and similar values.  Passwords often are estimated to have a certain amount of 'entropy' (although these estimations often make wild assumptions.)
+Entropy - A difficult term to define, usually meaning randomness. An Operating System collects 'entropy' to be able to securely generate cryptographic keys and similar values.  Passwords often are estimated to have a certain amount of 'entropy' (although these estimations often make wild assumptions.) Usually this refers to 'Shannon entropy' (after Claude Shannon), but there are other forms of entropy.
 
 
 Random Number Generator - a system designed to produce a sequence of numbers that appear random i.e. lacking a discernible pattern
 
-PRNG - pseudorandom number generator, an algorithm for generating number sequences that are an approximation of random number sequences. PRNGs generate sequences based on initial values called seeds, which may be random
+PRNG (aka RNG) - (pseudorandom) number generator, an algorithm for generating number sequences that are an approximation of random number sequences. PRNGs generate sequences based on initial values called seeds, which may be random
 
-CSPRNG - cryptographically secure pseudorandom number generator, a prng suitable for use in cryptography. csprngs use high quality sources for entropy and withstand common cryptanalysis tests.
+CSPRNG (aka PRNG or RNG) - cryptographically secure pseudorandom number generator, a prng suitable for use in cryptography. csprngs use high quality sources for entropy and withstand common cryptanalysis tests.  In cryptographic contexts a CSPRNG with a strong seed is usually implied by any mention of an RNG.
 
 
 
@@ -94,7 +97,7 @@ curves - A mapping of a series of points in space. Most commonly, curves are def
 ECC - Elliptic Curve Cryptography. A form of public-key encryption that uses algebraic curves (of the form y^2 = x^3 + ax + b) as the basis for its underlying mathematics (as contrasted with RSA, which uses very large prime numbers). The security of ECC depends on a series of consecutive "point multiplication" steps, which are easy to describe graphically and compute mathematically, but which as a set is very difficult to "run backwards" to determine the starting point.
 
 
-Round (in the sense of 20 rounds for AES) - A set of operations that perform part of a symmetric encryption step.  Symmetric Algorithms are often composed of 5, 10, 20 or more 'rounds' of operations. Individuals seeking to demonstrate an algorithm is weak will often begin attacking it on reduced-Round variants (e.g. an algorithm that only performs 10 of the recommended 15 rounds.) These attacks may then be improved to the full-round variant.
+Round (in the sense of 20 rounds for AES) - A set of operations that perform part of a symmetric encryption step.  Symmetric Algorithms are often composed of 5, 10, 20 or more 'rounds' of operations. Individuals seeking to analyze an algorithm will often begin attacking it on reduced-round variants (e.g. an algorithm that only performs 10 of the recommended 15 rounds.) These attacks may then be improved to the full-round variant (but this is not always possible).
 
 
 Merkle-Damgard - a generic construction of collision resistant hash functions. It composed collision resistant one-way compression functions to produce a complete algorithm. MD5, SHA1, and SHA2 are stuctured as a Merkle-Damgard construction.
@@ -242,9 +245,9 @@ SHA-1 - A popular hash function designed by the NSA to be used for DSA. Though s
 
 SHA-2 - A family of two hash functions designed by NSA. The two functions, SHA-256 and SHA-512 differ in block and word sizes (32-bit and 64-bit words respectively).
 
-SHA-256 - The SHA-2 hash function using a 32-bit block size and returning a hash which is 256 bits in length.
+SHA-256 aka SHA-2-256 - The SHA-2 hash function using a 32-bit block size and returning a hash which is 256 bits in length.
 
-SHA-512 - The SHA-2 hash function using a 64-bit block size and returning a hash which is 512 bits in length.
+SHA-512 aka SHA-2-512 - The SHA-2 hash function using a 64-bit block size and returning a hash which is 512 bits in length.
 
 SHA-224 - truncated version of SHA-256 to 224 bits
 
@@ -333,15 +336,15 @@ Gost - Refers to a suite of algorithms defined by the Russian government. Gost i
 
 25519 - A widely-used elliptic curve, adopted as an IETF standard in 2015.
 
-Goldilocks - A set of curves put forward by Mike Hamburg at higher security levels than 25519
+Goldilocks - A curve put forward by Mike Hamburg at a higher security level than 25519
 
 NUMS - A set of curves put forward by Microsoft in mid-2014
 
 BADA55 - A set of elliptic curves with a "verifiably random" seed which was non-randomly tweaked to include the string "BADA55". Generated to highlight a possible weakness in believing the randomness of such "nothing up my sleeve" numbers.
 
-P-Curves - A set of elliptic curve parameters based on prime curves standardized by NIST, based on pseudo-Mersenne primes.
+P-Curves aka NIST Curves - A set of elliptic curve parameters based on prime curves standardized by NIST, based on pseudo-Mersenne primes.
 
-K-Curves - A set of elliptic curve parameters based on binary field standardized by NIST, based on pseudo-Mersenne primes.  While binary curve-based algorithms are faster in hardware, they are often avoided due to mathematical hunches that their structure may enable additional attacks. 
+K-Curves aka NIST Curves - A set of elliptic curve parameters based on binary field standardized by NIST, based on pseudo-Mersenne primes.  While binary curve-based algorithms are faster in hardware, they are often avoided due to mathematical hunches that their structure may enable additional attacks. 
 
 NIST - The National Institute of Standards and Technology, a US Government agency which is responsible for developing and promoting cryptographic standards.
 
@@ -539,13 +542,13 @@ Clocks or Nonces - A tradeoff made in protocols to prove 'freshness' and prevent
 
 Rekeying - Changing a key (usually a session key in an ongoing communication) to reduce vulnerability to cryptanalysis or replay attacks.
 
+Ratcher - A method of advancing a shared secret to prevent the compromise of prior messages
+
 Forward Secrecy/Security - The principle that a negotiated session key cannot be compromised even if the long-term key(s) upon which it is based are compromised in the future.
 
-Perfect Forward Secrecy/Security - An additional property onto of Forward Secrecy that preserves the session key even if past session keys are disclosed.  
+Perfect Forward Secrecy/Security - Used interchangable with Forward Secrecy. Extremely rarely used to refer to an additional property of Forward Secrecy that preserves the session key even if past session keys are disclosed - but this additional property may also be refered to as a Denning-Sacco attack.  
 
 Future Secrecy - If a Session Key is compromised, a protocol is Future Secret if that compromise does not allow the compromise of future sessions.
-
-All three terms are the subject of debate and colloquial definitions may vary, swapping one property for another.
 
 Self-Healing - Sometimes used as a direct synonym for Future Secrecy. Othertimes, used as a description of a more nuanced property: If Alice and Bob communicate with a session key K, K is stolen by Eve or Mallory, and then Alice and Bob communicate for some time outside of Eve or Mallory's ability to persist compromise - then self-healing may mean the property that Eve or Mallory is now locked out from future decryption or impersonation. The use of the protocol, outside of Eve or Mallory's influence, has 'healed' it against the initial compromise. In the latter use, a protocol may not be Future Secret, but it may be Self-Healing. 
 
