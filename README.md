@@ -417,6 +417,8 @@ This document is not meant to serve as an _introduction_ to cryptography in gene
 
 **FFS or Function Field Sieve** - An algorithm for extracting discrete logarithms. The FFS is not efficient for 2048 bit Discrete Log groups.
 
+**Evil Maid** - When an attacker who has temporary physical control of a computer/phone modifies the software or hardware, usually to subvert cryptographic protections like full disk encryption. The most common example would be subverting the password prompt on a laptop to log the user's password. Comes from the notion of a hotel maid performing the attack when cleaning a room.
+
 **BEAST** - A successful demonstrated attack against a CBC vulnerability in SSL 3 and TLS 1.0.
 
 **CRIME** - An attack against TLS sessions with compression enabled that allows recovery of plaintext in the session.
