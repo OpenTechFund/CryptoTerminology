@@ -243,6 +243,8 @@ This document is not meant to serve as an _introduction_ to cryptography in gene
 
 **SEED** - A block cipher developed by the Korean Information Security Agency. Though initially unsupported by major libraries and web browsers, it is now supported by TLS, S/MIME, IPSec, among others. It is commonly used in South Korea, but rarely elsewhere. 
 
+**ARIA** - Another block cipher developed in Korea, and standardized for use in TLS. Again, rarely found outside South Korea. 
+
 **CAST-5** - a symmetric key block cipher known for being the default cipher in certain GPG/PGP versions.
 
 **Ciphertext Stealing** - A technique occasionally used in cipher block modes that allows the length of the ciphertext toexactly match the plaintext, even if it is not a multiple of the block size. 
